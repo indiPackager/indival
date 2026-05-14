@@ -1,0 +1,27 @@
+{
+  "name": "indival",
+  "version": "1.0.0",
+  "description": "India-first validation library for JavaScript and Node.js",
+  "keywords": [
+    "validation",
+    "validator",
+    "india",
+    "gst",
+    "pan",
+    "upi",
+    "ifsc",
+    "nodejs",
+    "javascript"
+  ],
+  "license": "MIT",
+  "author": "Ravi Katharotiya",
+  "type": "commonjs",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "validators"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  }
+}
