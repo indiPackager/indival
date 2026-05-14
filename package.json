@@ -13,6 +13,10 @@
     "nodejs",
     "javascript"
   ],
+  "scripts": {
+   "build": "node scripts/build-mobile-data.js",
+    "test": "node test.js"
+  },
   "license": "MIT",
   "author": "Ravi Katharotiya",
   "type": "commonjs",
@@ -20,8 +24,5 @@
   "files": [
     "index.js",
     "validators"
-  ],
-  "scripts": {
-    "test": "node test.js"
-  }
+  ]
 }

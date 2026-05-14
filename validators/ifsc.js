@@ -1,8 +1,32 @@
-function isIFSC(value) {
-    // exmp :- SBIN0001234
-    const ifscRegex = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+const createResponse =
+    require('../utils/response');
 
-    return ifscRegex.test(value);
+function isIFSC(value) {
+
+    const ifscRegex =
+        /^[A-Z]{4}0[A-Z0-9]{6}$/;
+
+    const valid =
+        ifscRegex.test(value);
+
+    if (!valid) {
+
+        return createResponse(
+            false,
+            'Invalid IFSC code',
+            null,
+            'ifsc'
+        );
+    }
+
+    return createResponse(
+        true,
+        'Valid IFSC code',
+        {
+            value
+        },
+        'ifsc'
+    );
 }
 
 module.exports = isIFSC;
