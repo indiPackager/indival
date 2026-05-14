@@ -1,13 +1,19 @@
 const createResponse =
     require('../utils/response');
 
+const sanitizeIFSC =
+    require('../sanitizers/ifsc');
+
 function isIFSC(value) {
+
+    const sanitized =
+        sanitizeIFSC(value);
 
     const ifscRegex =
         /^[A-Z]{4}0[A-Z0-9]{6}$/;
 
     const valid =
-        ifscRegex.test(value);
+        ifscRegex.test(sanitized);
 
     if (!valid) {
 
@@ -23,7 +29,7 @@ function isIFSC(value) {
         true,
         'Valid IFSC code',
         {
-            value
+            value: sanitized
         },
         'ifsc'
     );

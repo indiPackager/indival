@@ -1,13 +1,19 @@
 const createResponse =
     require('../utils/response');
 
+const sanitizeUPI =
+    require('../sanitizers/upi');
+
 function isUPI(value) {
+
+    const sanitized =
+        sanitizeUPI(value);
 
     const upiRegex =
         /^[a-zA-Z0-9.\-_]{2,}@[a-zA-Z]{2,}$/;
 
     const valid =
-        upiRegex.test(value);
+        upiRegex.test(sanitized);
 
     if (!valid) {
 
@@ -23,7 +29,7 @@ function isUPI(value) {
         true,
         'Valid UPI ID',
         {
-            value
+            value: sanitized
         },
         'upi'
     );

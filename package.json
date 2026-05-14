@@ -1,6 +1,6 @@
 {
   "name": "indival",
-  "version": "1.0.02",
+  "version": "1.0.03",
   "description": "India-first validation library for JavaScript and Node.js",
   "keywords": [
     "validation",

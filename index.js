@@ -13,10 +13,31 @@ const isIFSC =
 const isMobile =
     require('./validators/mobile');
 
+const sanitizePAN =
+    require('./sanitizers/pan');
+
+const sanitizeGST =
+    require('./sanitizers/gst');
+
+const sanitizeUPI =
+    require('./sanitizers/upi');
+
+const sanitizeIFSC =
+    require('./sanitizers/ifsc');
+
+const sanitizeMobile =
+    require('./sanitizers/mobile');
+
 module.exports = {
     isPAN,
     isGST,
     isUPI,
     isIFSC,
-    isMobile
+    isMobile,
+
+    sanitizePAN,
+    sanitizeGST,
+    sanitizeUPI,
+    sanitizeIFSC,
+    sanitizeMobile
 };

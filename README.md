@@ -1,11 +1,12 @@
 # indival
 
-Global validation library for Node.js and JavaScript with strong India-first validation support.
+Global validation and sanitization library for Node.js and JavaScript with strong India-first validation support.
 
 indival provides:
 
 - Global mobile number validation
 - Indian financial and identity validators
+- Automatic input sanitization
 - Metadata-driven validation architecture
 - Standardized validation responses
 - Lightweight and scalable utilities
@@ -27,35 +28,50 @@ const indival = require('indival');
 
 console.log(
     indival.isMobile(
-        '+919876543210',
+        '+91 98765-43210',
         'IN'
     )
 );
 
 console.log(
     indival.isPAN(
-        'ABCDE1234F'
+        ' abcde1234f '
     )
 );
 
 console.log(
     indival.isGST(
-        '22ABCDE1234F1Z5'
+        '22abcde1234f1z5'
     )
 );
 
 console.log(
     indival.isUPI(
-        'ravi@paytm'
+        ' Ravi@Paytm '
     )
 );
 
 console.log(
     indival.isIFSC(
-        'SBIN0001234'
+        ' sbin0001234 '
     )
 );
 ```
+
+---
+
+# Automatic Sanitization
+
+indival automatically sanitizes inputs before validation.
+
+Examples:
+
+| Raw Input | Sanitized |
+|---|---|
+| ` abcde1234f ` | `ABCDE1234F` |
+| `+91 98765-43210` | `+919876543210` |
+| ` sbin0001234 ` | `SBIN0001234` |
+| ` Ravi@Paytm ` | `ravi@paytm` |
 
 ---
 
@@ -90,7 +106,7 @@ Validate global mobile numbers using metadata-driven country validation.
 
 ```js
 indival.isMobile(
-    '+919876543210',
+    '+91 98765-43210',
     'IN'
 );
 
@@ -130,7 +146,7 @@ Validate Indian PAN card numbers.
 
 ```js
 indival.isPAN(
-    'ABCDE1234F'
+    ' abcde1234f '
 );
 ```
 
@@ -157,7 +173,7 @@ Validate Indian GST numbers.
 
 ```js
 indival.isGST(
-    '22ABCDE1234F1Z5'
+    '22abcde1234f1z5'
 );
 ```
 
@@ -184,7 +200,7 @@ Validate UPI IDs.
 
 ```js
 indival.isUPI(
-    'ravi@paytm'
+    ' Ravi@Paytm '
 );
 ```
 
@@ -211,7 +227,7 @@ Validate Indian bank IFSC codes.
 
 ```js
 indival.isIFSC(
-    'SBIN0001234'
+    ' sbin0001234 '
 );
 ```
 
@@ -226,6 +242,92 @@ indival.isIFSC(
     value: 'SBIN0001234'
   }
 }
+```
+
+---
+
+# Public Sanitizers
+
+indival also exposes standalone sanitizers.
+
+---
+
+## sanitizeMobile(value)
+
+```js
+indival.sanitizeMobile(
+    '+91 98765-43210'
+);
+```
+
+### Output
+
+```js
+'+919876543210'
+```
+
+---
+
+## sanitizePAN(value)
+
+```js
+indival.sanitizePAN(
+    ' abcde1234f '
+);
+```
+
+### Output
+
+```js
+'ABCDE1234F'
+```
+
+---
+
+## sanitizeGST(value)
+
+```js
+indival.sanitizeGST(
+    '22abcde1234f1z5'
+);
+```
+
+### Output
+
+```js
+'22ABCDE1234F1Z5'
+```
+
+---
+
+## sanitizeUPI(value)
+
+```js
+indival.sanitizeUPI(
+    ' Ravi@Paytm '
+);
+```
+
+### Output
+
+```js
+'ravi@paytm'
+```
+
+---
+
+## sanitizeIFSC(value)
+
+```js
+indival.sanitizeIFSC(
+    ' sbin0001234 '
+);
+```
+
+### Output
+
+```js
+'SBIN0001234'
 ```
 
 ---
@@ -251,6 +353,7 @@ indival/
 │
 ├── data/
 ├── dist/
+├── sanitizers/
 ├── scripts/
 ├── utils/
 ├── validators/
@@ -286,6 +389,7 @@ indival uses:
 - Metadata-driven validation
 - Runtime-generated datasets
 - Layered validation architecture
+- Automatic sanitization pipeline
 - Standardized response handling
 
 ---
@@ -307,14 +411,20 @@ indival uses:
 - Runtime dist generation
 - Standardized responses
 
+## v1.0.3
+
+- Automatic sanitization
+- Standalone sanitizer utilities
+- Improved validation pipeline
+
 ## Planned
 
-- Sanitizers
 - Number formatting
 - Number parsing
 - Metadata validation
 - TypeScript support
 - Country lookup utilities
+- Smart universal validation engine
 
 ---
 

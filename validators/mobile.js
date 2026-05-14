@@ -4,7 +4,13 @@ const mobileData =
 const createResponse =
     require('../utils/response');
 
+const sanitizeMobile =
+    require('../sanitizers/mobile');
+
 function isMobile(number, country) {
+
+    const sanitized =
+        sanitizeMobile(number);
 
     const config =
         mobileData[country];
@@ -23,7 +29,7 @@ function isMobile(number, country) {
         new RegExp(config.regex);
 
     const valid =
-        regex.test(number);
+        regex.test(sanitized);
 
     if (!valid) {
 
@@ -44,7 +50,7 @@ function isMobile(number, country) {
         {
             country: config.country,
             code: config.code,
-            value: number
+            value: sanitized
         },
         'mobile'
     );
